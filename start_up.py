@@ -41,7 +41,10 @@ for file in os.listdir(cog_path):
 #Unload voice_chat commands at startup
 bot.unload_extension(f'cogs.voice_chat')
 
-token_collect = open('config.txt')
-token = token_collect.readline()
+try:
+    token_collect = open('config.txt')
+    token = token_collect.readline()
+except FileNotFoundError:
+    token = os.environ["TOKEN"]
 
 bot.run(token)
