@@ -41,4 +41,7 @@ for file in os.listdir(cog_path):
 #Unload voice_chat commands at startup
 bot.unload_extension(f'cogs.voice_chat')
 
-bot.run('ODU0MTM2OTUxNjcyOTMwMzU1.G9fmrT.Ww__XZU-mrJeeRXCaxn9TkiakosuF8Vu6Wid_k')
+token_collect = open('config.txt')
+token = token_collect.readline()
+
+bot.run(token)
