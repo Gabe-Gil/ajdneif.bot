@@ -1,3 +1,4 @@
+from ast import alias
 import discord
 from discord.ext import commands
 import datetime
@@ -96,7 +97,7 @@ class General_Commands(commands.Cog):
         await ctx.send(ctx.guild.icon_url)
 
     #Grab a random online user in the server
-    @commands.command()
+    @commands.command(aliases=['random'])
     async def roulette(self, ctx):
         online_user_list = []
 
@@ -104,7 +105,8 @@ class General_Commands(commands.Cog):
             if str(user.status) != "offline":
                 online_user_list.append(user)
         
-        await ctx.send(random.choice(online_user_list))
+        selected = random.choice(online_user_list)
+        await ctx.send(selected)
     
     #For test use only
     #@commands.command()
