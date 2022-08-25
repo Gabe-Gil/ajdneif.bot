@@ -94,11 +94,22 @@ class General_Commands(commands.Cog):
     @commands.command()
     async def icon(self, ctx):
         await ctx.send(ctx.guild.icon_url)
+
+    #Grab a random online user in the server
+    @commands.commad()
+    async def roulette(self, ctx):
+        online_user_list = []
+
+        for user in ctx.guild.members:
+            if str(user.status) != "offline":
+                online_user_list.append(user)
+        
+        await ctx.send(random.choice(online_user_list))
     
     #For test use only
-    @commands.command()
-    async def test(self, ctx):
-        await ctx.send('hi <:HELLO:867210278369755167>')
+    #@commands.command()
+    #async def test(self, ctx):
+        #await ctx.send('hi <:HELLO:867210278369755167>')
 
 #Cog setup
 def setup(bot):
