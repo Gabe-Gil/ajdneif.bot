@@ -96,7 +96,7 @@ class General_Commands(commands.Cog):
         await ctx.send(ctx.guild.icon_url)
 
     #Grab a random online user in the server
-    @commands.commad()
+    @commands.command()
     async def roulette(self, ctx):
         online_user_list = []
 
