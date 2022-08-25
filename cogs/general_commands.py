@@ -97,16 +97,20 @@ class General_Commands(commands.Cog):
         await ctx.send(ctx.guild.icon_url)
 
     #Grab a random online user in the server
-    @commands.command(aliases=['random'])
-    async def roulette(self, ctx):
+    @commands.command(aliases=['roulette'])
+    async def random(self, ctx):
         online_user_list = []
 
         for user in ctx.guild.members:
-            if str(user.status) != "offline":
+            if user.status == discord.Status.online and not user.bot:
                 online_user_list.append(user)
+
+        if online_user_list:
+           selected = random.choice(online_user_list) 
+           await ctx.send(selected)
         
-        selected = random.choice(online_user_list)
-        await ctx.send(selected)
+        else:
+            await ctx.send('Error: Nobody is online.')
     
     #For test use only
     #@commands.command()

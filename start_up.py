@@ -7,7 +7,11 @@ import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 cog_path = os.path.join(dir_path, 'cogs')
 
-bot = commands.Bot(command_prefix='!')
+intents = discord.Intents.all()
+intents.members = True
+intents.messages = True
+intents.presences = True
+bot = commands.Bot(command_prefix='!', intents=intents)
 
 #Time tracking
 current_time = f'{datetime.datetime.now().time().strftime("%H:%M")}, {datetime.date.today().strftime("%m/%d/%Y")}'
@@ -42,7 +46,8 @@ for file in os.listdir(cog_path):
 bot.unload_extension(f'cogs.voice_chat')
 
 try:
-    token_collect = open('config.txt')
+    config = os.path.join(dir_path, 'config.txt')
+    token_collect = open(config, 'r')
     token = token_collect.readline()
 except FileNotFoundError:
     token = os.environ["TOKEN"]
