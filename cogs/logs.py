@@ -31,5 +31,5 @@ class Log(commands.Cog):
         print(f'Bot functioning.\n{self.bot.latency * 1000}ms')
 
 #Cog setup
-def setup(bot):
-    bot.add_cog(Log(bot))
+async def setup(bot):
+    await bot.add_cog(Log(bot))

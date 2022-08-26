@@ -22,12 +22,12 @@ async def load(extension):
 
 @bot.command()
 async def unload(extension):
-    bot.unload_extension(f'cogs.{extension}')
+    await bot.unload_extension(f'cogs.{extension}')
 
 @bot.command()
 async def reload(extension):
-    bot.load_extension(f'cogs.{extension}')
-    bot.unload_extension(f'cogs.{extension}')
+    await bot.load_extension(f'cogs.{extension}')
+    await bot.unload_extension(f'cogs.{extension}')
 
 @bot.event
 async def on_ready():
@@ -37,10 +37,10 @@ async def on_ready():
 async def on_command_error(ctx, error):
     await ctx.send("Invalid command used.")
 
-
-for file in os.listdir(cog_path):
-    if file.endswith('.py'):
-        bot.load_extension(f'cogs.{file[:-3]}')
+async def load_extensions():
+    for file in os.listdir(cog_path):
+        if file.endswith('.py'):
+            await bot.load_extension(f'cogs.{file[:-3]}')
 
 #Unload voice_chat commands at startup
 #bot.unload_extension(f'cogs.voice_chat')
