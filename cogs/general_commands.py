@@ -118,5 +118,5 @@ class General_Commands(commands.Cog):
         #await ctx.send('hi <:HELLO:867210278369755167>')
 
 #Cog setup
-async def setup(bot):
-    await bot.add_cog(General_Commands(bot))
+def setup(bot):
+    bot.add_cog(General_Commands(bot))

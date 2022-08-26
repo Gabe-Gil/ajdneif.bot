@@ -81,5 +81,5 @@ class Voice(commands.Cog):
         voice.stop()
 
 #Cog setup
-async def setup(bot):
-    await bot.add_cog(Voice(bot))
+def setup(bot):
+    bot.add_cog(Voice(bot))
