@@ -5,7 +5,6 @@ import datetime
 import os
 import random
 import sqlite3
-import pandas as pd
 
 #Dev Check
 def is_dev(ctx):
