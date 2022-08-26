@@ -43,7 +43,7 @@ for file in os.listdir(cog_path):
         bot.load_extension(f'cogs.{file[:-3]}')
 
 #Unload voice_chat commands at startup
-bot.unload_extension(f'cogs.voice_chat')
+#bot.unload_extension(f'cogs.voice_chat')
 
 try:
     config = os.path.join(dir_path, 'config.txt')
