@@ -4,7 +4,7 @@ from discord.ext import commands
 import datetime
 import os
 import random
-import sqlite3
+#import sqlite3
 
 #Dev Check
 def is_dev(ctx):
@@ -20,38 +20,38 @@ class General_Commands(commands.Cog):
         self.dir_path = os.path.dirname(os.path.realpath(__file__))
 
         #SQLite database setup
-        conn = sqlite3.connect('ajdneif_banned_words')
-        conn.row_factory = sqlite3.Row
-        c = conn.cursor()
+        #conn = sqlite3.connect('ajdneif_banned_words')
+        #conn.row_factory = sqlite3.Row
+        #c = conn.cursor()
 
-        c.execute('''
-                CREATE TABLE IF NOT EXISTS banned_words
-                ([word] TEXT)
-                ''')
+        #c.execute('''
+                #CREATE TABLE IF NOT EXISTS banned_words
+                #([word] TEXT)
+                #''')
         
-        c.execute("SELECT * FROM banned_words")
+        #c.execute("SELECT * FROM banned_words")
 
-        temp = c.fetchall()
-        global banlist
-        banlist = {}
+        #temp = c.fetchall()
+        #global banlist
+        #banlist = {}
 
-        for i in temp:
-            banlist[i['word']] = 0
+        #for i in temp:
+            #banlist[i['word']] = 0
 
-        conn.commit()
+        #conn.commit()
 
     #Print alert that cog is loaded when loaded
     @commands.Cog.listener()
     async def on_ready(self):
         print(f'General commands cog loaded. ({self.current_time})')
 
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if not message.author.bot:
-            for word in message.content.split():
-                if word in banlist:
-                    await message.delete()
-                    await message.channel.send('A message was removed due to having a banner word.')
+    #@commands.Cog.listener()
+    #async def on_message(self, message):
+        #if not message.author.bot:
+            #for word in message.content.split():
+                #if word in banlist:
+                    #await message.delete()
+                    #await message.channel.send('A message was removed due to having a banner word.')
 
     #Delete a specific amount of previous chats, 2 if no value is entered
     @commands.command()
@@ -143,50 +143,50 @@ class General_Commands(commands.Cog):
             await ctx.send('Error: Nobody is online.')
     
     #Bans a word from being used in the chat
-    @commands.check(is_dev)
-    @commands.command(aliases=['banword'])
-    async def ban_word(self, ctx, arg):
-        conn = sqlite3.connect('ajdneif_banned_words')
-        c = conn.cursor()
+    #@commands.check(is_dev)
+    #@commands.command(aliases=['banword'])
+    #async def ban_word(self, ctx, arg):
+        #conn = sqlite3.connect('ajdneif_banned_words')
+        #c = conn.cursor()
 
-        c.execute("INSERT INTO banned_words (word) VALUES (?)", [arg])
+        #c.execute("INSERT INTO banned_words (word) VALUES (?)", [arg])
         
-        conn.commit()
+        #conn.commit()
 
-        await ctx.send(f'"{arg}" has been banned.')
+        #await ctx.send(f'"{arg}" has been banned.')
 
     #Shows the banned word list
-    @commands.check(is_dev)
-    @commands.command(aliases=['showbans'])
-    async def show_bans(self, ctx):
-        conn = sqlite3.connect('ajdneif_banned_words')
-        conn.row_factory = sqlite3.Row
-        c = conn.cursor()
-        c.execute("SELECT * FROM banned_words")
+    #@commands.check(is_dev)
+    #@commands.command(aliases=['showbans'])
+    #async def show_bans(self, ctx):
+        #conn = sqlite3.connect('ajdneif_banned_words')
+        #conn.row_factory = sqlite3.Row
+        #c = conn.cursor()
+        #c.execute("SELECT * FROM banned_words")
 
-        temp = c.fetchall()
-        global banlist
-        banlist = {}
+        #temp = c.fetchall()
+        #global banlist
+        #banlist = {}
 
-        for i in temp:
-            banlist[i['word']] = 0
+        #for i in temp:
+            #banlist[i['word']] = 0
         
-        conn.commit()
+        #conn.commit()
 
-        if banlist.keys(): 
-            await ctx.send([i for i in banlist.keys()])
-        else:
-            await ctx.send('No words are banned.')
+        #if banlist.keys(): 
+            #await ctx.send([i for i in banlist.keys()])
+        #else:
+            #await ctx.send('No words are banned.')
 
-    @commands.check(is_dev)
-    @commands.command(aliases=['unbanword'])
-    async def unban_word(self, ctx, arg):
-        conn = sqlite3.connect('ajdneif_banned_words')
-        c = conn.cursor()
+    #@commands.check(is_dev)
+    #@commands.command(aliases=['unbanword'])
+    #async def unban_word(self, ctx, arg):
+        #conn = sqlite3.connect('ajdneif_banned_words')
+        #c = conn.cursor()
 
-        c.execute("DELETE FROM banned_words WHERE word = ?", [arg])
-        conn.commit()
-        await ctx.send(f'"{arg}" has been deleted from the banned word list')
+        #c.execute("DELETE FROM banned_words WHERE word = ?", [arg])
+        #conn.commit()
+        #await ctx.send(f'"{arg}" has been deleted from the banned word list')
 
     #For test use only
     #@commands.command()
