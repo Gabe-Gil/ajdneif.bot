@@ -30,7 +30,7 @@ class Voice(commands.Cog):
         voiceChannel = discord.utils.get(ctx.guild.voice_channels, name='General')
         await voiceChannel.connect()
         voice = discord.utils.get(self.bot.voice_clients, guild=ctx.guild)
-
+        
         ydl_opts = {
             'format' : 'bestaudio/best',
             'postprocessors' : [{

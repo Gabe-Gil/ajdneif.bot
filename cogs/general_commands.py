@@ -39,7 +39,7 @@ class General_Commands(commands.Cog):
     #Send random cat image
     @commands.command()
     async def cat(self, ctx):
-        img_path = os.path.join(self.dir_path, 'pictures\cats')
+        img_path = os.path.join(self.dir_path, 'pictures/cats')
         img = random.choice(os.listdir(img_path))
         new_img_path = os.path.join(img_path, img)
         
@@ -48,7 +48,7 @@ class General_Commands(commands.Cog):
     #Send random good morning image
     @commands.command()
     async def morning(self, ctx):
-        img_path =  img_path = os.path.join(self.dir_path, 'pictures\morning')
+        img_path =  img_path = os.path.join(self.dir_path, 'pictures/morning')
         img = random.choice(os.listdir(img_path))
         new_img_path = os.path.join(img_path, img)
 
@@ -57,20 +57,20 @@ class General_Commands(commands.Cog):
     #Send timetostop image
     @commands.command()
     async def itstimetostop(self, ctx):
-        img_path = os.path.join(self.dir_path, 'pictures\misc\\timetostop.jpg')
+        img_path = os.path.join(self.dir_path, 'pictures/misc//timetostop.jpg')
         await ctx.send(file=discord.File(img_path))
 
     #Send brexit image + emoji
     @commands.command(aliases=['brexit'])
     async def solutiontobrexit(self, ctx):
-        img_path = os.path.join(self.dir_path, 'pictures\misc\\railroad.jpg')
+        img_path = os.path.join(self.dir_path, 'pictures/misc//railroad.jpg')
         await ctx.send('<:BRIISHCHEWSDAYINNIT:867211267508404224>')
         await ctx.send(file=discord.File(img_path))
 
     #Send god's image
     @commands.command(aliases=['god'])
     async def faceofgod(self, ctx):
-        img_path = os.path.join(self.dir_path, 'pictures\misc\\faceofgod.jpg')
+        img_path = os.path.join(self.dir_path, 'pictures/misc//faceofgod.jpg')
         await ctx.send(file=discord.File(img_path))
 
     #Detailed guide on discord bot commands
